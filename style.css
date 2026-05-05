@@ -1,83 +1,162 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-
-body {
-  background-color: #050505;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
-#confetti-canvas {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none; z-index: 999;
+body {
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 40px 20px; 
+    overflow-x: hidden;
 }
 
 .background-glow {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(circle at 50% 30%, #1a2536 0%, #050505 80%);
-  z-index: -1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 112, 243, 0.4) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: -1;
 }
 
-.container { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+}
 
 .glass-card {
-  background: rgba(43, 58, 85, 0.25);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 35px;
-  padding: 45px 25px;
-  width: 100%; max-width: 380px; text-align: center;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 30px 25px;
+    width: 100%;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
-.logo-container { display: flex; justify-content: center; margin-top: -85px; margin-bottom: 25px; }
+.logo-container {
+    margin-top: -75px; 
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
 
 .church-logo-circle {
-  width: 90px; height: 90px;
-  background: #000;
-  border: 2px solid #007FFF;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 127, 255, 0.4);
+    width: 90px;
+    height: 90px;
+    background: #000;
+    border: 2px solid #0070f3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 112, 243, 0.6);
+    overflow: hidden;
 }
 
-.main-logo { width: 100%; height: 100%; object-fit: cover; }
+.main-logo {
+    width: 115%; /* Large and bold */
+    height: auto;
+    object-fit: contain;
+}
 
-.main-title { font-size: 1rem; letter-spacing: 3px; color: white; font-weight: 700; margin-bottom: 5px;}
-.sub-title { font-size: 0.65rem; letter-spacing: 2px; color: #007FFF; margin-bottom: 35px; }
+.main-title {
+    font-weight: 900;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+}
 
-.label { color: #007FFF; font-size: 0.65rem; text-transform: uppercase; display: block; margin-bottom: 8px; text-align: left; }
+.sub-title {
+    font-size: 0.8rem;
+    color: #0070f3;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #0070f3;
+    letter-spacing: 1px;
+}
+
 input, select {
-  width: 100%; background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(142, 154, 175, 0.2);
-  border-radius: 12px; padding: 14px; color: white; outline: none; font-size: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px;
+    color: #fff;
+    outline: none;
 }
 
-.birthday-row { display: flex; gap: 15px; margin-bottom: 20px; }
-.small { flex: 1; } .large { flex: 2; }
+.birthday-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+}
 
 .premium-button {
-  position: relative; overflow: hidden; width: 100%; padding: 18px;
-  background: linear-gradient(90deg, #007FFF, #0056b3);
-  border: none; border-radius: 15px; color: white; font-weight: bold; letter-spacing: 2px;
-  box-shadow: 0 15px 30px rgba(0, 127, 255, 0.3);
-  cursor: pointer;
+    background: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-weight: 700;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
-.btn-shine {
-  position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-  animation: shine 4s infinite;
+.feedback-msg {
+    font-size: 0.75rem;
+    margin-top: 5px;
+    height: 15px;
+    text-align: center;
 }
 
-@keyframes shine { 0% { left: -100%; } 20% { left: 100%; } 100% { left: 100%; } }
+.designer-credit {
+    margin-top: 40px; /* Space from the button */
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.3);
+}
 
-.designer-credit { margin-top: 30px; font-size: 0.65rem; letter-spacing: 2px; color: rgba(142, 154, 175, 0.5); text-transform: uppercase; }
-.portfolio-link { color: #007FFF; text-decoration: none; font-weight: 900; }
-
-.feedback-msg { margin-top: 20px; font-size: 0.8rem; height: 20px; font-weight: 600; }
-
+.portfolio-link {
+    color: #0070f3;
+    text-decoration: none;
+    font-weight: 700;
+}
